@@ -35,4 +35,17 @@ app.get("/select", function(req, res){
     })
 })
 
+app.get("/add/:imie/:nazwisko/:klasa", function(req, res){
+    const imie = req.params.imie
+    const nazwisko = req.params.nazwisko
+    const klasa = req.params.klasa
+
+    const sql = `INSERT INTO test (imie,nazwisko,klasa) VALUES ('${imie}','${nazwisko}','${klasa}')`
+    con.query(sql, function(err,result,fields){
+        if(err) {
+            console.log(err)
+            res.send("nie dodano")
+        } else res.send("dodano")
+    })
+})
 app.listen(port)
